@@ -9,6 +9,7 @@ import (
 )
 
 var inputFiles []string
+var toFormat string
 
 var rootCmd = &cobra.Command{
 	Use:   "fileconvert [file]",
@@ -36,5 +37,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().StringVar(&toFormat, "to", "", "target format (doc, docx, pdf, jpg, jpeg, png, webp, mp3, wav, flac, mp4, mkv, webm, mov)")
+	rootCmd.MarkFlagRequired("to")
 }
