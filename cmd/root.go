@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/almeidafm/clifileconverter/files"
@@ -17,7 +18,13 @@ var rootCmd = &cobra.Command{
 
 		inputFiles = args
 
-		return files.Validate(inputFiles)
+		if err := files.ValidateFileFormat(inputFiles); err != nil {
+			return err
+		}
+
+		fmt.Println("Sucess!!")
+
+		return nil
 	},
 }
 

@@ -38,24 +38,53 @@ var videoFormats = map[string]struct{}{
 	"mov":  {},
 }
 
-func Validate(inputFiles []string) error {
-	for _, file := range inputFiles {
-		ext := strings.ToLower(strings.TrimPrefix(filepath.Ext(file), "."))
+type FileType int
 
-		if _, ok := textFormats[ext]; ok {
-			continue
-		}
-		if _, ok := imageFormats[ext]; ok {
-			continue
-		}
-		if _, ok := audioFormats[ext]; ok {
-			continue
-		}
-		if _, ok := videoFormats[ext]; ok {
-			continue
+const (
+	Unknown FileType = iota
+	Text
+	Image
+	Audio
+	Video
+)
+
+func getFileType(ext string) FileType {
+	ext = strings.ToLower(ext)
+	if _, ok := textFormats[ext]; ok {
+		return Text
+	}
+	if _, ok := imageFormats[ext]; ok {
+		return Image
+	}
+	if _, ok := audioFormats[ext]; ok {
+		return Audio
+	}
+	if _, ok := videoFormats[ext]; ok {
+		return Video
+	}
+	return Unknown
+}
+
+func ValidateFileFormat(inputFiles []string) error {
+	if len(inputFiles) == 0 {
+		return fmt.Errorf("none file provided")
+	}
+
+	var group FileType
+
+	for i, file := range inputFiles {
+		ext := strings.TrimPrefix(strings.ToLower(filepath.Ext(file)), ".")
+		ft := getFileType(ext)
+
+		if ft == Unknown {
+			return fmt.Errorf("invalid format: %s", file)
 		}
 
-		return fmt.Errorf("invalid format: %s", file)
+		if i == 0 {
+			group = ft
+		} else if ft != group {
+			return fmt.Errorf("different files format not allowed: %s", file)
+		}
 	}
 
 	return nil
