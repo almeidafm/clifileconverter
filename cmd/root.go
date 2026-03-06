@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/almeidafm/clifileconverter/convert"
 	"github.com/almeidafm/clifileconverter/files"
 	"github.com/spf13/cobra"
 )
@@ -19,12 +20,28 @@ var rootCmd = &cobra.Command{
 
 		inputFiles = args
 
-		if err := files.ValidateFileFormat(inputFiles, toFormat); err != nil {
+		group, err := files.ValidateFileFormat(inputFiles, toFormat)
+		if err != nil {
 			return err
 		}
 
-		fmt.Println("Sucess!!")
+		fmt.Println("Group:", group)
 
+		switch group {
+		case files.Audio:
+			return convert.Audio(inputFiles, toFormat)
+
+		case files.Image:
+			return convert.Image(inputFiles, toFormat)
+
+		case files.Text:
+			return convert.Text(inputFiles, toFormat)
+
+		case files.Video:
+			return convert.Video(inputFiles, toFormat)
+
+			return fmt.Errorf("unsupported file group")
+		}
 		return nil
 	},
 }
