@@ -19,7 +19,7 @@ var rootCmd = &cobra.Command{
 
 		inputFiles = args
 
-		if err := files.ValidateFileFormat(inputFiles); err != nil {
+		if err := files.ValidateFileFormat(inputFiles, toFormat); err != nil {
 			return err
 		}
 

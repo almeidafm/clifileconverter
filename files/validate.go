@@ -65,7 +65,7 @@ func getFileType(ext string) FileType {
 	return Unknown
 }
 
-func ValidateFileFormat(inputFiles []string) error {
+func ValidateFileFormat(inputFiles []string, toFormat string) error {
 	if len(inputFiles) == 0 {
 		return fmt.Errorf("none file provided")
 	}
@@ -85,6 +85,16 @@ func ValidateFileFormat(inputFiles []string) error {
 		} else if ft != group {
 			return fmt.Errorf("different files format not allowed: %s", file)
 		}
+	}
+
+	toType := getFileType(strings.ToLower(toFormat))
+
+	if toType == Unknown {
+		return fmt.Errorf("invalid target format: %s", toFormat)
+	}
+
+	if toType != group {
+		return fmt.Errorf("cannot convert %v files to %s", group, toFormat)
 	}
 
 	return nil
