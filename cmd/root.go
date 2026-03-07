@@ -34,9 +34,6 @@ var rootCmd = &cobra.Command{
 		case files.Image:
 			return convert.Image(inputFiles, toFormat)
 
-		case files.Text:
-			return convert.Text(inputFiles, toFormat)
-
 		case files.Video:
 			return convert.Video(inputFiles, toFormat)
 
@@ -54,6 +51,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().StringVar(&toFormat, "to", "", "target format (doc, docx, pdf, jpg, jpeg, png, webp, mp3, wav, flac, mp4, mkv, webm, mov)")
+	rootCmd.Flags().StringVar(&toFormat, "to", "", "target format (jpg, jpeg, png, webp, mp3, wav, flac, mp4, mkv, webm, mov)")
 	rootCmd.MarkFlagRequired("to")
 }

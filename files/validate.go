@@ -12,12 +12,6 @@ import (
 	_ "image/png"
 )
 
-var textFormats = map[string]struct{}{
-	"doc":  {},
-	"docx": {},
-	"pdf":  {},
-}
-
 var imageFormats = map[string]struct{}{
 	"jpg":  {},
 	"jpeg": {},
@@ -50,9 +44,6 @@ const (
 
 func getFileType(ext string) FileType {
 	ext = strings.ToLower(ext)
-	if _, ok := textFormats[ext]; ok {
-		return Text
-	}
 	if _, ok := imageFormats[ext]; ok {
 		return Image
 	}
