@@ -13,8 +13,8 @@ var inputFiles []string
 var toFormat string
 
 var rootCmd = &cobra.Command{
-	Use:   "fileconvert [file]",
-	Short: "File Converter",
+	Use:   "clifileconvert [file]",
+	Short: "Command Line File Converter",
 	Args:  cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 

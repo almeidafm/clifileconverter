@@ -36,7 +36,6 @@ type FileType int
 
 const (
 	Unknown FileType = iota
-	Text
 	Image
 	Audio
 	Video
