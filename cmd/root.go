@@ -9,13 +9,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var version = "0.1.0"
+
 var inputFiles []string
 var toFormat string
 
 var rootCmd = &cobra.Command{
-	Use:   "clifileconvert [file]",
-	Short: "Command Line File Converter",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "clifileconvert [file]",
+	Short:   "Command Line File Converter",
+	Args:    cobra.MinimumNArgs(1),
+	Version: version,
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		inputFiles = args
