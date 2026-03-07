@@ -33,9 +33,7 @@ FFmpeg must be installed and available in the system `PATH`.
 Clone the repository and build:
 
 ```bash
-git clone https://github.com/almeidafm/clifileconverter
-cd clifileconverter
-
+curl -fsSL https://raw.githubusercontent.com/almeidafm/clifileconverter/main/install.sh | sh
 ```
 
 ## Usage
