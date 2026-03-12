@@ -44,7 +44,7 @@ resolve_version() {
 
 download_and_install() {
 
-    ASSET="${BINARY_NAME}_${PLATFORM}.tar.gz"
+    ASSET="${BINARY_NAME}_${PLATFORM}_${VERSION}.tar.gz"
     URL="https://github.com/${REPO}/releases/download/${VERSION}/${ASSET}"
 
     TMP_DIR="$(mktemp -d)"
