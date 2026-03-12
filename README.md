@@ -13,6 +13,7 @@
 - [Usage](#usage)
 - [Supported Formats](#supported-formats)
 - [Examples](#examples)
+- [Uninstall](#uninstall)
 - [License](#license)
 
 ## Features
@@ -30,7 +31,7 @@ FFmpeg must be installed and available in the system `PATH`.
 
 ## Installation
 
-Clone the repository and build:
+Install with the following command:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/almeidafm/clifileconverter/main/install.sh | sh
@@ -71,6 +72,10 @@ Video:
 
 ## Examples
 
+The program reads input files from the current working directory and writes the converted files to the same directory.
+
+Each output file keeps the original base name and only changes the extension.
+
 Convert an image:
 
 ```bash
@@ -83,36 +88,37 @@ Convert multiple images:
 clifileconverter img1.png img2.png img3.png --to webp
 ```
 
+Convert an audio:
+
+```bash
+clifileconverter audio.wav --to mp3
+```
+
+Convert multiple audios:
+
+```bash
+clifileconverter audio.wav audio.flac --to mp3
+```
+
 Convert a video:
 
 ```bash
 clifileconverter video.mov --to mp4
 ```
 
-Convert audio:
+Convert multiple videos:
 
 ```bash
-clifileconverter audio.wav --to mp3
+clifileconverter video1.mkv video2.mp4 video.mp4 --to webm
 ```
 
-## Output
+## Uninstall
 
-The program reads input files from the current working directory and writes the converted files to the same directory.
+For uninstalling run the command:
 
-Each output file keeps the original base name and only changes the extension.
-
-Example:
-
-input:
 ```bash
-photo.png
+curl -fsSL https://raw.githubusercontent.com/almeidafm/clifileconverter/main/uninstall.sh | sh
 ```
-
-output:
-```bash
-photo.jpg
-```
-
 ## License
 
 MIT License
