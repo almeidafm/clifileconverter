@@ -56,13 +56,13 @@ Image:
 - png
 - webp
 
-Audio (via ffmpeg):
+Audio:
 
 - mp3
 - wav
 - flac
 
-Video (via ffmpeg):
+Video:
 
 - mp4
 - mkv
